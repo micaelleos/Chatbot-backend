@@ -5,6 +5,7 @@ from fastapi import FastAPI, Body
 from mangum import Mangum
 import uvicorn
 from scripts.chat import Chatbot
+from scripts.getSessions import get_all_keys
 
 app = FastAPI()
 handler=Mangum(app)
@@ -26,6 +27,11 @@ async def chat(chat_session: str, prompt: Annotated[Prompt, Body(embed=True)]):
 def chat_history(chat_session:str):
    history = Chatbot(session_id=chat_session).history
    return {'chat_session':chat_session,"history":history}
+
+@app.get('/session/list')
+def chat_history():
+   list = get_all_keys()
+   return {'Session_ids':list}
 
 if __name__=="__main__":
   uvicorn.run(app,host="0.0.0.0",port=9000)
