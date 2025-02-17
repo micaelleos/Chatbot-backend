@@ -95,13 +95,3 @@ Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICEN
 ### Contato
 
 Se você tiver dúvidas ou sugestões, sinta-se à vontade para abrir uma *issue* ou me contatar diretamente através do e-mail [micaelle.osouza@gmail.com].
-
----
-
-### Descrição Curta para o GitHub:
-
-**Backend de Chatbot Genérico com LangChain e AWS Lambda**: Este repositório contém o backend de um chatbot genérico utilizando **LangChain**, **FastAPI** e **AWS Lambda**. O projeto usa **Docker** para containerização e **DynamoDB** para armazenamento de dados e histórico de conversas. É uma base escalável e de fácil deploy para criar chatbots personalizados e serverless.
-
----
-
-Esse **README** fornece uma explicação clara do projeto, destacando as principais tecnologias utilizadas, funcionalidades e como rodar o projeto localmente ou na AWS. Se precisar de mais ajustes ou detalhes, só avisar!
