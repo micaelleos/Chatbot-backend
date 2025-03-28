@@ -1,97 +1,121 @@
-### Visão Geral
+# **Chatbot-Backend**
+---
 
-Este repositório contém a implementação do **backend** de um **chatbot genérico** utilizando o framework **LangChain** para gerenciamento de conversas, **FastAPI** para criação de APIs rápidas e escaláveis, e **Docker** para containerização do projeto. O chatbot foi configurado para ser executado como **funções Lambda da AWS**, com integração ao **DynamoDB** para persistência de dados e histórico de interações.
+### **Overview**  
 
-### Tecnologias Utilizadas
+This repository contains the implementation of a **generic chatbot backend** using the **LangChain** framework for conversation management, **FastAPI** for building fast and scalable APIs, and **Docker** for project containerization. The chatbot is configured to run as **AWS Lambda functions**, with integration into **DynamoDB** for data persistence and interaction history storage.  
 
-- **LangChain**: Framework para construir agentes conversacionais baseados em modelos de linguagem.
-- **FastAPI**: Framework rápido e eficiente para criação de APIs RESTful.
-- **Docker**: Containerização do backend para fácil deploy e execução.
-- **AWS Lambda**: Execução serverless para escalar funções sem a necessidade de gerenciar servidores.
-- **DynamoDB**: Banco de dados NoSQL da AWS para armazenamento de dados e histórico do chatbot.
+---
 
-### Funcionalidades
+### **Technologies Used**  
 
-- **Integração com AWS Lambda**: O chatbot roda em funções Lambda, permitindo escalabilidade e baixo custo operacional.
-- **Armazenamento em DynamoDB**: Armazena e recupera dados de interação do chatbot, podendo ser facilmente expandido para armazenar históricos, preferências de usuários, entre outros.
-- **Modelo Genérico de Chatbot**: O chatbot pode ser personalizado para diversos casos de uso, incluindo atendimento ao cliente, assistentes pessoais e mais.
+- **LangChain**: A framework for building conversational agents based on language models.  
+- **FastAPI**: A fast and efficient framework for creating RESTful APIs.  
+- **Docker**: Containerization of the backend for easy deployment and execution.  
+- **AWS Lambda**: Serverless execution to scale functions without managing servers.  
+- **DynamoDB**: AWS NoSQL database for storing chatbot data and history.  
 
-### Estrutura do Repositório
+---
 
-- **app/**: Contém o código principal do backend, incluindo a implementação do FastAPI e integração com LangChain.
-- **Dockerfile**: Arquivo de configuração para construir a imagem Docker do projeto.
-- **requirements.txt**: Dependências necessárias para rodar o projeto localmente.
-- **serverless.yml**: Configurações para deploy das funções Lambda e integração com AWS.
-- **.env**: Arquivo de variáveis de ambiente (não incluído no repositório por questões de segurança).
+### **Features**  
 
-### Como Rodar o Projeto
+- **AWS Lambda Integration**: The chatbot runs as Lambda functions, ensuring scalability and low operational costs.  
+- **DynamoDB Storage**: Stores and retrieves chatbot interaction data, with easy expansion for storing histories, user preferences, and more.  
+- **Generic Chatbot Model**: The chatbot can be customized for various use cases, including customer support, personal assistants, and more.  
 
-#### 1. **Clonando o Repositório**
+---
 
-Clone o repositório para a sua máquina local:
+### **Repository Structure**  
+
+- **scripts/**: Contains the main backend code, including the FastAPI implementation and LangChain integration.  
+- **Dockerfile**: Configuration file to build the project's Docker image.  
+- **requirements.txt**: List of dependencies required to run the project locally.  
+- **Makefile**: Deployment configurations for Lambda functions and AWS integration.  
+- **.env**: Environment variables file (not included in the repository for security reasons).  
+
+---
+
+### **How to Run the Project**  
+
+#### 1. **Clone the Repository**  
+
+Clone the repository to your local machine:  
 
 ```bash
 git clone https://github.com/micaelleos/chatbot.git
 cd chatbot
-```
+```  
 
-#### 2. **Instalando Dependências**
+#### 2. **Install Dependencies**  
 
-Instale as dependências necessárias:
+Install the required dependencies:  
 
 ```bash
 pip install -r requirements.txt
-```
+```  
 
-#### 3. **Rodando Localmente com Docker**
+#### 3. **Run Locally with Docker**  
 
-O projeto está configurado para ser executado dentro de um container Docker. Para rodar o backend localmente, use os seguintes comandos:
+The project is configured to run inside a Docker container. To start the backend locally, use the following commands:  
 
 ```bash
 docker build -t chatbot .
 docker run -p 8000:8000 chatbot
-```
+```  
+or run:  
 
-A API do FastAPI estará disponível em `http://localhost:8000`.
+```bash
+uvicorn api:app --reload
+```  
 
-#### 4. **Deploy no AWS Lambda**
+The FastAPI API will be available at `http://localhost:8000`.  
 
-Para rodar no AWS Lambda, utilize o **Serverless Framework** para deploy. Siga os passos abaixo:
+#### 4. **Deploy on AWS Lambda**  
 
-- Configure suas credenciais AWS (`AWS_ACCESS_KEY_ID` e `AWS_SECRET_ACCESS_KEY`).
-- Instale o **Serverless Framework** globalmente:
+To deploy on AWS Lambda, use the **Serverless Framework** by following these steps:  
+
+- Configure your AWS credentials (`AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`).  
+- Install the **Serverless Framework** globally:  
 
   ```bash
   npm install -g serverless
-  ```
+  ```  
 
-- Faça o deploy utilizando o comando:
+- Deploy using the command:  
 
   ```bash
   serverless deploy
-  ```
+  ```  
 
-Isso vai fazer o deploy do backend para as funções Lambda da AWS.
+This will deploy the backend to AWS Lambda functions.  
 
-### Como Funciona
+---
 
-1. **Interação do Chatbot**: O chatbot recebe as perguntas dos usuários via API FastAPI, que é gerida pelas funções Lambda.
-2. **Processamento com LangChain**: O LangChain é utilizado para gerenciar a lógica de conversação, interagindo com o modelo de linguagem e permitindo uma resposta adequada baseada no contexto.
-3. **Armazenamento em DynamoDB**: O histórico de conversas ou dados adicionais podem ser armazenados no DynamoDB para consultas futuras.
+### **How It Works**  
 
-### Contribuindo
+1. **Chatbot Interaction**: The chatbot receives user queries via the FastAPI-based API, which is managed by Lambda functions.  
+2. **Processing with LangChain**: LangChain is used to handle conversation logic, interacting with the language model to provide context-based responses.  
+3. **Storage in DynamoDB**: Conversation history and additional data can be stored in DynamoDB for future queries.  
 
-Se você deseja contribuir para este projeto, siga os seguintes passos:
+---
 
-1. Faça um fork deste repositório.
-2. Crie uma nova branch (`git checkout -b minha-nova-feature`).
-3. Faça suas alterações.
-4. Envie um pull request com uma descrição detalhada das mudanças.
+### **Contributing**  
 
-### Licença
+If you want to contribute to this project, follow these steps:  
 
-Este projeto está licenciado sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+1. Fork this repository.  
+2. Create a new branch (`git checkout -b my-new-feature`).  
+3. Make your changes.  
+4. Submit a pull request with a detailed description of the modifications.  
 
-### Contato
+---
 
-Se você tiver dúvidas ou sugestões, sinta-se à vontade para abrir uma *issue* ou me contatar diretamente através do e-mail [micaelle.osouza@gmail.com].
+### **License**  
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.  
+
+---
+
+### **Contact**  
+
+If you have any questions or suggestions, feel free to open an *issue* or contact me directly via email: [micaelle.osouza@gmail.com].  
